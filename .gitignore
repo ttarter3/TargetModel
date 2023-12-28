@@ -1,5 +1,6 @@
 data/*
 *.wings~
+\#*\#
 references/*/exported_3d_models/*
 
 # Byte-compiled / optimized / DLL files

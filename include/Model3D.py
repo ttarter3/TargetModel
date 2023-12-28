@@ -1,23 +1,29 @@
-from typing import Callable
-import numpy as np
-import numpy.typing as npt
-from numpy import ScalarType
+import os
 
+from partyfirst.targetmodel.include.WavefrontObjFile import WavefrontObjFile
+
+
+# conda did not work when trying to install tinyobjloader
+# only thing that worked was downloading microsoft build tools -> https://visualstudio.microsoft.com/visual-cpp-build-tools/ -> Download build tools -> run exe -> next -> next -> next ...
+# Then running ".\pip install tinyobjloader==2.0.0rc7" which contains precompiled windows libraries
+# newer versions of tinyobjloader did not work. i.e. 2.0.0.rc9, idk about rc8
+# import tinyobjloader
+# tinyobjloader and pyassimp did not work.  just parse it ourselves.
 
 class Model3D:
 
     def __init__(self, object_name: str
-                 , vertices: np.ndarray[npt.Any, np.dtype[+ScalarType]]
-                 , edges: np.ndarray[npt.Any, np.dtype[+ScalarType]]
-                 , general_description_of_reference_frame: str) -> object:
+                 , object_wavefront_obj_file: str) -> object:
         """
         Generic Model for hosting a 3d Object
         :param object_name: UniqueId for the object of interest. Multiple objects of similar builds would have 'airplane1', 'airplane2'
-        :param vertices: xyz coordinate system of points
-        :param edges: 0 based, reference of vertices to connect to create triangles
-        :param general_description_of_reference_frame: a useful description so that someone know the units and reference of the nose of the object
         """
         self.object_name_ = object_name
-        self.vertices_ = vertices
-        self.edges_ = edges
-        self.general_description_of_reference_frame_ = general_description_of_reference_frame
+        self.wavefront_obj_ = WavefrontObjFile(object_wavefront_obj_file)
+
+if __name__ == "__main__":
+    phantom_obj_file = os.path.join(
+                        os.path.dirname(os.path.realpath(__file__))
+                        , '..', 'data', 'DJIPantomSmoothed.obj')
+    meshes = Model3D('DJI_Phantom', phantom_obj_file)
+    meshes.wavefront_obj_.PlotVertices()
