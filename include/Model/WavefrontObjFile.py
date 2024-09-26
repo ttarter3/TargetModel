@@ -41,6 +41,8 @@ class WavefrontObjFile:
 
       vert_pattern = f'v{generic_line}'
       self.obj_map_[tmp[ii]].vertices_ = np.array(re.findall(vert_pattern, tmp_data), dtype=np.float64)
+      # self.obj_map_[tmp[ii]].vertices_ =  self.obj_map_[tmp[ii]].vertices_[:, [1,0,2]]
+
 
       norm_pattern = f'vn{generic_line}'
       self.obj_map_[tmp[ii]].vert_normals_ = np.array(re.findall(norm_pattern, tmp_data), dtype=np.float64)
@@ -76,4 +78,4 @@ class WavefrontObjFile:
     ax.set_xlabel('X[meters]')
     ax.set_ylabel('Y[meters]')
     ax.set_zlabel('Z[meters]')
-    plt.show()
+    
