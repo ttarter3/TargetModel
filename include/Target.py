@@ -21,7 +21,7 @@ class Target:
     self.rcs_model_ = rcs_model
 
   def GetRCS(self, time_sec: np.array, tx_pos_ecf_3m, rx_pos_ecf_3m) -> RCSProfile:
-    # [p, v, a] = Coordtrans.ECR2RAE(Constants(), relative_reference_position_lla
+    # [p, v, a] = Coordtrans.ECF2RAE(Constants(), relative_reference_position_lla
     #                    , self.tsp_.GetPositionECF3M(time_sec)
     #                    , self.tsp_.GetVelocityECF3MPS(time_sec)
     #                    , self.tsp_.GetAccelerationECF3MPS(time_sec))
@@ -30,8 +30,8 @@ class Target:
     tgt_rpy_ecf_3d = self.tsp_.GetRPYECF3Deg(time_sec)
 
     med_tgt_pos_3m  = np.expand_dims(np.median(tgt_pos_ecf_3m, axis=0), axis=0)
-    relative_reference_position_lla = Coordtrans.ECR2LLA(Constants(), tx_pos_ecf_3m)
-    med_tgt_r_m = Coordtrans.ECR2RAE(Constants(), relative_reference_position_lla, med_tgt_pos_3m)[0, 0]
+    relative_reference_position_lla = Coordtrans.ECF2LLA(Constants(), tx_pos_ecf_3m)
+    med_tgt_r_m = Coordtrans.ECF2RAE(Constants(), relative_reference_position_lla, med_tgt_pos_3m)[0, 0]
 
     assert(np.isnan(med_tgt_r_m) or med_tgt_r_m >= 0)
 
