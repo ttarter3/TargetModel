@@ -2,7 +2,20 @@ import os
 import re
 
 import numpy as np
+import matplotlib.pyplot as plt
 
+
+class WaveFrontObj:
+  def __init__(self):
+    self.num_vertices_ = None
+    self.num_faces_ = None
+    self.face_verts_idx_ = None
+    self.vertices_ = None
+    self.vert_normals_ = None
+    self.face_norm_idx_ = None
+    self.vert_texture_ = None
+    self.face_text_idx_ = None
+  pass
 
 class WavefrontObjFile:
   def __init__(self, file_name_with_path):
@@ -20,16 +33,11 @@ class WavefrontObjFile:
     tmp = re.split(r'o (\w+)\n', data)[1:]
 
     self.obj_map_ = dict()
-
-    class WaveFrontObj:
-      pass
-
     for ii in range(0, len(tmp), 2):
       self.obj_map_[tmp[ii]] = WaveFrontObj()
 
       tmp_data = tmp[ii + 1]
-      [[self.obj_map_[tmp[ii]].num_vertices_, self.obj_map_[tmp[ii]].num_faces_]] = re.findall(
-        '#(\d+) vertices, (\d+) faces\n', tmp_data)
+      [[self.obj_map_[tmp[ii]].num_vertices_, self.obj_map_[tmp[ii]].num_faces_]] = re.findall('#(\d+) vertices, (\d+) faces\n', tmp_data)
       self.obj_map_[tmp[ii]].num_vertices_ = int(self.obj_map_[tmp[ii]].num_vertices_)
       self.obj_map_[tmp[ii]].num_faces_ = int(self.obj_map_[tmp[ii]].num_faces_)
 
@@ -66,7 +74,6 @@ class WavefrontObjFile:
       self.obj_map_[tmp[ii]].face_text_idx_ = np.array(face_tmp[:, 1::3], dtype=np.float64)
 
   def PlotVertices(self):
-    import matplotlib.pyplot as plt
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
 
