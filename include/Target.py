@@ -4,6 +4,8 @@ from matplotlib import pyplot as plt
 from numpy.linalg import norm
 
 from config.Config import Config
+from partyfirst.Broker.MessageInterface import MessageInterface
+from partyfirst.GUID import GUID
 from partyfirst.radarmodel.include.panel.Panel import Panel
 from partyfirst.targetmodel.include.RCS.RCS import RCS
 from partyfirst.targetmodel.include.RCS.RCSProfile import RCSProfile
@@ -13,12 +15,20 @@ from partythird.coordtrans.include.coordtrans import Rotations, Coordtrans
 
 # ToDo: Need to add the ability to generate RCS model based on waveform.  I.e. are we s band waveform or x band waveform
 
-class Target:
+class Target(object):
   def __init__(self, tsp: TSP, rcs_model: RCS):
+    super().__init__()
+    self.guid_ = GUID.generate_guid()
+
     assert(isinstance(rcs_model, RCS) and isinstance(tsp, TSP))
 
     self.tsp_ = tsp
     self.rcs_model_ = rcs_model
+
+  def on_failure(self):
+    pass
+  def on_receive(self, msg):
+    pass
 
   def GetRCS(self, time_sec: np.array, tx_pos_ecf_3m, rx_pos_ecf_3m) -> RCSProfile:
     # [p, v, a] = Coordtrans.ECF2RAE(Constants(), relative_reference_position_lla
