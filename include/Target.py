@@ -1,10 +1,28 @@
+"""
+ * This file is part of UAHThesis.
+ * Copyright (C) 2024 UAH - Thomas Tarter
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+"""
+
 import numpy as np
 import scipy
 from matplotlib import pyplot as plt
 from numpy.linalg import norm
 
 from config.Config import Config
-from partyfirst.Broker.MessageInterface import MessageInterface
+from partyfirst.broker.MessageInterface import MessageInterface
 from partyfirst.GUID import GUID
 from partyfirst.radarmodel.include.panel.Panel import Panel
 from partyfirst.targetmodel.include.RCS.RCS import RCS
