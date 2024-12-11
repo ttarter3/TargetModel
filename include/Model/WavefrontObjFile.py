@@ -1,4 +1,4 @@
-"""
+'''
  * This file is part of UAHThesis.
  * Copyright (C) 2024 UAH - Thomas Tarter
  *
@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
-"""
+'''
 
 import os
 import re
@@ -103,4 +103,4 @@ class WavefrontObjFile:
     ax.set_xlabel('X[meters]')
     ax.set_ylabel('Y[meters]')
     ax.set_zlabel('Z[meters]')
-    
+

@@ -1,4 +1,4 @@
-"""
+'''
  * This file is part of UAHThesis.
  * Copyright (C) 2024 UAH - Thomas Tarter
  *
@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
-"""
+'''
+
 import numpy as np
 
 from config.Config import Config
@@ -54,3 +55,4 @@ class TargetList():
       return tgt_list
 
     else: raise ValueError("Unsupported Target Set")
+

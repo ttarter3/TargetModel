@@ -1,4 +1,4 @@
-"""
+'''
  * This file is part of UAHThesis.
  * Copyright (C) 2024 UAH - Thomas Tarter
  *
@@ -14,10 +14,9 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
-"""
-
-
+'''
 
 class RCS(object):
   def GetRCS(self, roll_deg, yaw_deg):
     raise NotImplementedError()
+

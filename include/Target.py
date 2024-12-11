@@ -1,4 +1,4 @@
-"""
+'''
  * This file is part of UAHThesis.
  * Copyright (C) 2024 UAH - Thomas Tarter
  *
@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
-"""
+'''
 
 import numpy as np
 import scipy
@@ -294,3 +294,4 @@ if __name__ == '__main__':
 #   r = vector_a @ r.as_matrix()
 #   print(f"ERROR: {np.linalg.norm(vector_b - r)}")
 # '''
+
