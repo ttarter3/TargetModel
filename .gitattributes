@@ -1,0 +1,2 @@
+*.wings filter=lfs diff=lfs merge=lfs -text
+references/dji_phantom/wings3d_models/DJIPantomFundamentalHalf.wings filter=lfs diff=lfs merge=lfs -text
